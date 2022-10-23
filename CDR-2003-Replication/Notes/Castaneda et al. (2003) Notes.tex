@@ -1,0 +1,278 @@
+\documentclass{article}
+\usepackage{indentfirst}     
+\usepackage{setspace}        
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry} 
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+
+\pagestyle{empty}
+\fancyhf{}
+\lhead{Replication for Castaneda et al. (2003)}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+\pagestyle{plain}
+
+\title{Summary of Castaneda, Diaz-Gimenez, Rios-Rull (2003 \textit{JPE})\\
+Accounting for the U.S. Earnings and Wealth Inequality\\}
+\author{Yanran Guo}
+\date{1.16.2019} 
+\begin{document}
+\begin{spacing}{1.5}
+\maketitle
+\thispagestyle{fancy}
+
+
+\section{Introduction}
+\setlength{\parindent}{2em}
+\subsection{What They Do}
+\begin{itemize}
+\item Create a model capable of reproducing the concentration of earnings and wealth at the top.
+\item Use a heterogeneous agent model of the Bewley-Huggett-Aiyagari type.
+\item There is a continuum of ex-anti identical households who exhibit the same preferences. They make optimal choices about savings and labor supply and face uninsured idiosyncratic risk to efficiency labor units, but no aggregate uncertainty.\\
+\end{itemize}
+
+
+\subsection{Major Features}
+\begin{itemize}
+\item Mix dynastic and life-cycle features (working-age $\&$ retirement)\\
+It is a life-cycle model with stochastic aging. Households go through the life cycle and can be either workers or retirees. Households are altruistic, and care about the utility of their descendants as much as they care about their own utility, which makes the life-cycle model to an infinite horizon model.
+\item Earnings process is calibrated to match SCF data on earnings and wealth inequality. Hence the earnings process is ``cooked'' to match the wealth distribution.
+\item Social security system is modeled. Hence low earning working-age households are expecting to receive retirement income in the future which is relatively higher than their current wage income. This mechanism provides households with incentive to saving less or nothing, and hence accounts for low wealth observations.
+\item Progressive income tax system and estate tax system are modeled.
+\item Model labor decision explicitly.\\
+\end{itemize}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Model}
+\setlength{\parindent}{2em}
+\noindent
+Stochastic neoclassical growth model with uninsured idiosyncratic risk and no aggregate uncertainty.
+\begin{itemize}
+\item A continuum of ex-ante identical households
+\item Stochastic aging\\
+With probability $\Omega_r$: working $\rightarrow$ retired\\
+With probability $\Omega_d$: retired $\rightarrow$ dead
+\item Working-age households face an uninsured idiosyncratic stochastic labor productivity process
+\item Voluntary bequest + $\underbrace{\text{inter-generational human capital transmission}}_{\text{part of the earning ability is transferred to descendants}}$\\
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Endowment Dynamics}
+\begin{itemize}
+\item Endowment of efficiency labor units\\
+3 parameters: $s_2$, $s_3$, $s_4$
+\begin{align*}
+s\in S=[\underbrace{1, s_2, s_3, s_4,}_{\substack{\text{working-age}\\ \epsilon}} \underbrace{0, 0, 0, 0}_{\substack{\text{retirement}\\ R}}]
+\end{align*}
+$s_1$ is normalized to 1. 
+\begin{itemize}
+\item When a HH draws shock $s\in \epsilon$, it is of working age, and it is endowed with $s>0$ efficiency labor units.
+\item When a HH draws shock $s\in R$, it is retired, and it is endowed with 0 efficiency labor units. $s\in R$ is used to keep track of the realization of $s$ that the HH faced during the last period of its working life. This knowledge is essential to analyze inter-generational transmission of earnings ability.
+\end{itemize}
+\newpage
+\item The joint age and endowment of efficiency labor units process\\
+16 parameters: $p_{12}$, $p_{13}$, $p_{14}$, $p_{21}$, $p_{23}$, $p_{24}$, $p_{31}$, $p_{32}$, $p_{34}$, $p_{41}$, $p_{42}$, $p_{43}$, $\Omega_r$, $\Omega_d$, $\phi_1$, $\phi_2$
+\begin{align*}
+\Gamma_{SS}=
+\begin{pmatrix}
+\Gamma_{\epsilon\epsilon}\cdot(1-\Omega_r) & \Omega_r\cdot\mathbb{I}\\
+\Omega_d\cdot\Gamma_{R\epsilon} & (1-\Omega_d)\cdot\mathbb{I} 
+\end{pmatrix}
+\end{align*}
+\begin{align*}
+&\Gamma_{\epsilon\epsilon}=
+\begin{pmatrix}
+         (1-p_{12}-p_{13}-p_{14}) & p_{12} & p_{13}& p_{14}\\
+         p_{21} & (1-p_{21}-p_{23}-p_{24}) & p_{23}& p_{24}\\
+         p_{31} & p_{32} & (1-p_{31}-p_{32}-p_{34})& p_{34}\\
+         p_{41} & p_{42} & p_{43} & (1-p_{41}-p_{42}-p_{43})\\
+\end{pmatrix}
+\\
+&\Gamma_{R\epsilon} = \big\{\gamma^*_{\epsilon}, \phi_1, \phi_2\big\}
+\end{align*}
+$\gamma^*_{\epsilon}$ is the invariant measure of $\epsilon$\\
+$\phi_1$ determines the inter-generational persistence of earnings.\\
+$\phi_2$ governs the life-cycle profile of earnings\\
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Household}
+\begin{itemize}
+\item Household preference\\
+5 parameters: $\beta$, $\sigma_1$, $\sigma_2$, $\chi$, $\iota$
+\begin{align*}
+\mathbb{E}\sum_{t=0}^{\infty}\beta^tu(c_t,l_t)\quad\Rightarrow\quad\mathbb{E}\sum_{t=0}^{\infty}\beta^t\big[\frac{c^{1-\sigma_1}_t}{1-\sigma_1}+\chi\frac{(\iota-l_t)^{1-\sigma_2}}{1-\sigma_2}\big]
+\end{align*}
+\item Bellman equation
+\begin{align*}
+&V(a,s)=max \ \frac{c^{1-\sigma_1}_t}{1-\sigma_1}+\chi\frac{(\iota-l_t)^{1-\sigma_2}}{1-\sigma_2}+\beta\mathbb{E}V(a',s')\\
+&s.t.\\
+&z+c=a+y-\tau(y)\\
+&y=ar+slw+\omega(s)\\
+&c\geq 0, \quad 0\leq l\leq \iota\\
+&a'=\left\{\begin{array}{cc} z & s\not\in R\text{ or } s'\not\in\epsilon\\ z & z\leq\underline{z}\text{ and }s\in R\text{ and }s'\in\epsilon\\ z-\tau_E(z-\underline{z}) & z>\underline{z}\text{ and }s\in R\text{ and }s'\in\epsilon \end{array} \right.
+\end{align*}
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Firm}
+2 parameters: $\theta$, $\delta$
+\begin{itemize}
+\item Production function
+\begin{align*}
+Y_t=K_t^{\theta}L_t^{1-\theta}
+\end{align*}
+\item Profit maximization problem
+\begin{align*}
+&max \ K_t^{\theta}L_t^{1-\theta}-(r_t+\delta)K_t-w_tL_t\\
+&\text{FOCs}\\
+&r_t=\theta\big(\frac{K_t}{L_t}\big)^{\theta-1}-\delta\\
+&w_t=(1-\theta)\big(\frac{r_t+\delta}{\theta}\big)^{\frac{\theta}{\theta-1}}\\
+\end{align*}
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Government}
+8 parameters: $\alpha_0$, $\alpha_1$, $\alpha_2$, $\alpha_3$, $\tau_E$, $\underline{z}$, $G$, $\omega$
+\begin{itemize}
+\item Income tax
+\begin{align*}
+\tau(y)=\alpha_0[y-(y^{-\alpha_1}+\alpha_2)^{-1/\alpha_1}]+\alpha_3y
+\end{align*}
+\item Estate tax
+\begin{align*}
+\tau_E(z)=\left\{\begin{array}{cc} 0 & z\leq\underline{z}\\ \tau_E(z-\underline{z}) & z>\underline{z} \end{array} \right.
+\end{align*}
+\item Budget constraint
+\begin{align*}
+G_t+Tr_t=T_t
+\end{align*}
+\begin{itemize}
+\item Transfer 
+\begin{align*}
+Tr=\int_{a\in\mathcal{A}, s\in\mathcal{S}}\omega(s)d\mu(a,s)
+\end{align*}
+\item Income tax
+\begin{align*}
+T(\text{income})=\int_{a\in\mathcal{A}, s\in\mathcal{S}}\big\{\alpha_0[y(a,s)-(y(a,s)^{-\alpha_1}+\alpha_2)^{-1/\alpha_1}]+\alpha_3y(a,s)\big\}d\mu(a,s)
+\end{align*}
+\item Estate tax
+\begin{align*}
+T(\text{estate})=\int_{a\in\mathcal{A}, s\in\mathcal{S}}\textbf{1}_{\{s\in R\}}\cdot\Omega_d\cdot\tau_E(z(a,s)-\underline{z})\cdot\textbf{1}_{\{z(a,s)>\underline{z}\}}d\mu(a,s)\\
+\end{align*}
+\end{itemize}
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Stationary Equilibrium}
+$V(a,s)$, $c(a,s)$, $z(a,s)$, $l(a,s)$, $K$, $L$, $G$, $\omega$, $r$, $w$
+\begin{itemize}
+\item Household optimization
+\item Firm: 2 FOCs
+\item Government budget constraint
+\item Market clearing conditions
+\begin{itemize}
+\item Capital
+\begin{align*}
+K'=\int_{a\in\mathcal{A}, s\in\mathcal{S}}a'(a,s)d\mu(a,s)
+\end{align*}
+\item Labor
+\begin{align*}
+L=\int_{a\in\mathcal{A}, s\in\mathcal{S}}s\cdot l(a,s)d\mu(a,s)
+\end{align*}
+\item Good
+\begin{align*}
+Y=G-(1-\delta)K+\int_{a\in\mathcal{A}, s\in\mathcal{S}}c(a,s)+z(a,s)d\mu(a,s)
+\end{align*}
+\end{itemize}
+\item Stationary distribution of $\mu(a,s)$
+\begin{align*}
+\mu(a',s')&=\int_{a\in\mathcal{A}, s\in\mathcal{S}} \Gamma(s'|s)\cdot\textbf{1}_{\{s\in\epsilon\}}\cdot\textbf{1}_{\{z(a,s)\leq a'\}}d\mu(a,s)\\
+ &+\int_{a\in\mathcal{A}, s\in\mathcal{S}} \Gamma(s'|s)\cdot\textbf{1}_{\{s\in R\}}\cdot\textbf{1}_{\{s'\in R\}}\cdot\textbf{1}_{\{z(a,s)\leq a'\}}d\mu(a,s)\\
+ &+\int_{a\in\mathcal{A}, s\in\mathcal{S}} \Gamma(s'|s)\cdot\textbf{1}_{\{s\in R\}}\cdot\textbf{1}_{\{s'\in \epsilon\}}\cdot\textbf{1}_{\{z(a,s)\leq \underline{z}\}}\cdot\textbf{1}_{\{z(a,s)\leq a'\}}d\mu(a,s)\\
+ &+\int_{a\in\mathcal{A}, s\in\mathcal{S}} \Gamma(s'|s)\cdot\textbf{1}_{\{s\in R\}}\cdot\textbf{1}_{\{s'\in \epsilon\}}\cdot\textbf{1}_{\{z(a,s)> \underline{z}\}}\cdot\textbf{1}_{\{z(a,s)-\tau_E(z(a,s)-\underline{z})\leq a'\}}d\mu(a,s)\\
+\end{align*}
+\end{itemize}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Calibration}
+\noindent
+\subsection*{Preference}
+\textcolor{red}{3 parameters to calibrate}: $\beta$, $\sigma_2$, $\chi$
+\begin{itemize}
+\item $\beta$: match $\frac{K}{Y}=3.13$
+\item $\sigma_1=1.5$: the curvature of consumption falls within the range (1 to 3) that is standard in the literature
+\item $\sigma_2$: determines labor supply. It is calibrated such that it falls within the range of Frisch elasticity of labor supply observed in the literature.
+\item $\iota=3.2$: makes the aggregate labor input approximately equal to 1.
+\item $\chi$: controls for the relative share of consumption and leisure. It is calibrated to match average share of disposable time allocated to market activities by the households (=$30\%$).
+\end{itemize}
+
+\subsection*{Technology}
+\begin{itemize}
+\item $\theta=0.376$: the targeted capital income share is 0.376
+\item $\delta=0.0594$: target a capital to output ration, $K/Y=3.13$; an investment to output ratio, $I/Y=0.186$. The rate of depreciation of capital, $\delta$, follows immediately from $\delta=I/K$ in stationary general equilibrium, which can be identified as $\delta=(I/Y)/(K/Y)=0.186/3.13=0.0594$
+\end{itemize}
+
+\subsection*{Government Sector}
+\textcolor{red}{5 parameters to calibrate}: $\alpha_2$, $\alpha_3$, $\tau_E$, $G$, $\omega$
+\begin{align*}
+&\tau(y)=\alpha_0[y-(y^{-\alpha_1}+\alpha_2)^{-1/\alpha_1}]+\alpha_3y\\
+&\tau_E(z)=\left\{\begin{array}{cc} 0 & z\leq\underline{z}\\ \tau_E(z-\underline{z}) & z>\underline{z} \end{array} \right.\\
+&G_t+Tr_t=T_t
+\end{align*}
+\begin{itemize}
+\item $\alpha_0=0.258$: unit-independent. Use the values reported by Gouveia and Strauss.
+\item $\alpha_1=0.768$: unit-independent. Use the values reported by Gouveia and Strauss.
+\item $\alpha_2$: tax rate levied on average HH income in model economy is the same as the effective tax rate on average HH income
+\item $\alpha_3$: government in model economy balances its budget
+\item $\tau_E$: match $\frac{T(\text{estate})}{Y}=0.002$
+\item $\underline{z}$: target value is $\underline{z}=10\overline{y}$, where $\overline{y}$ is the average income per HH. \textcolor{red}{There is no need to calibrate $\underline{z}$}. Our guess for the value of aggregate output uniquely determines the value of $\underline{z}$.
+\item $G$: match $G/Y=0.202$
+\item $\omega$: match $Tr/Y=0.049$
+\end{itemize}
+
+\subsection*{Endowment Dynamics}
+\textcolor{red}{17 parameters to calibrate}: $s_2$, $s_3$, $s_4$, $p_{12}$, $p_{13}$, $p_{14}$, $p_{21}$, $p_{23}$, $p_{24}$, $p_{31}$, $p_{32}$, $p_{34}$, $p_{41}$, $p_{42}$, $p_{43}$, $\phi_1$, $\phi_2$
+\begin{align*}
+&S=[1, s_2, s_3, s_4, 0, 0, 0, 0]\\
+&\Gamma_{SS}=
+\begin{pmatrix}
+\Gamma_{\epsilon\epsilon}\cdot(1-\Omega_r) & \Omega_r\cdot\mathbb{I}\\
+\Omega_d\cdot\Gamma_{R\epsilon} & (1-\Omega_d)\cdot\mathbb{I} 
+\end{pmatrix}
+\end{align*}
+\begin{itemize}
+\item $\Omega_r=0.0222$: expected duration of working-lives is 45 years. Hence the probability of retiring is $\Omega_r=1/45=0.0222$
+\item $\Omega_d=0.0667$: expected duration of retirement is 15 years. Hence the probability of dying is $\Omega_d=1/15=0.0667$
+\item $\phi_1$: cross-sectional correlation between the average lifetime earnings of one generation of HHs and the average lifetime earnings of their immediate descendants = 0.4
+\item $\phi_2$: ratio of the average earnings of HHs between ages 41 and 60 to that of HHs between ages 21 and 40 = 1.303
+\item $s_2$, $s_3$, $s_4$, $p_{12}$, $p_{13}$, $p_{14}$, $p_{21}$, $p_{23}$, $p_{24}$, $p_{31}$, $p_{32}$, $p_{34}$, $p_{41}$, $p_{42}$, $p_{43}$
+\begin{itemize}
+\item Gini index for earnings = 0.63
+\item Gini index for wealth = 0.78
+\item The income and wealth shares of HHs in 1st, 2nd, 3rd, 4th quintile
+\item The income and wealth shares of HHs between percentiles 90-95, 95-99, top $1\%$
+\end{itemize}
+\end{itemize}
+\end{spacing}
+\end{document}
